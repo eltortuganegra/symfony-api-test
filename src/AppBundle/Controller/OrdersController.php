@@ -14,16 +14,6 @@ class OrdersController extends  Controller
 {
 
     /**
-     * @Route("/phpinfo")
-     */
-    public function phpinfoAction()
-    {
-        return new Response(
-            '<html><body> ' . phpinfo() . '</body></html>'
-        );
-    }
-
-    /**
      * @Route("/orders")
      */
     public function indexAction(Request $request)
