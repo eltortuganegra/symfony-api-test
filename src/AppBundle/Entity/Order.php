@@ -47,7 +47,7 @@ class Order
     private $deliverHours;
 
     /**
-     * @ORM\Column(type="decimal")
+     * @ORM\Column(type="decimal", precision=10, scale=2)
      */
     private $price;
 
