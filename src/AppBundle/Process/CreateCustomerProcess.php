@@ -17,7 +17,7 @@ class CreateCustomerProcess
         $this->entityManager = $entityManager;
     }
 
-    public function create($data)
+    public function execute($data)
     {
         $this->loadCustomerFactory();
         $this->makeCustomer($data);
