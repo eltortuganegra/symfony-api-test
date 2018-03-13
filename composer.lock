@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "705e343a24b5694557e02866a1c0a4b3",
+    "content-hash": "37b5cb2afe6288bf3687f2658989418a",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -1114,6 +1114,54 @@
                 "random"
             ],
             "time": "2017-09-27T21:40:39+00:00"
+        },
+        {
+            "name": "pmill/doctrine-array-hydrator",
+            "version": "v0.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pmill/doctrine-array-hydrator.git",
+                "reference": "4ed937ecb8fa2868ca196f73960c4507571b0556"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pmill/doctrine-array-hydrator/zipball/4ed937ecb8fa2868ca196f73960c4507571b0556",
+                "reference": "4ed937ecb8fa2868ca196f73960c4507571b0556",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/orm": "^2.5"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "dev-master",
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "4.8.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "pmill\\Doctrine\\Hydrator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "pmill",
+                    "email": "dev.pmill@gmail.com"
+                }
+            ],
+            "description": " An array to entity hydrator for Doctrine 2 entities ",
+            "homepage": "https://github.com/pmill/doctrine-array-hydrator",
+            "keywords": [
+                "array",
+                "doctrine",
+                "hydrator",
+                "php"
+            ],
+            "time": "2017-11-23T16:07:02+00:00"
         },
         {
             "name": "psr/cache",
