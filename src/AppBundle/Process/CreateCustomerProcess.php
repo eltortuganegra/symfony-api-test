@@ -4,6 +4,8 @@ namespace AppBundle\Process;
 
 use AppBundle\Entity\Customer;
 use AppBundle\Factory\CustomerFactory;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
+use AppBundle\Exceptions\EmailOfCustomerMustBeUnique;
 
 class CreateCustomerProcess
 {
@@ -28,8 +30,12 @@ class CreateCustomerProcess
 
     private function save()
     {
-        $this->entityManager->persist($this->customer);
-        $this->entityManager->flush();
+        try {
+            $this->entityManager->persist($this->customer);
+            $this->entityManager->flush();
+        } catch (UniqueConstraintViolationException $e) {
+            throw new EmailOfCustomerMustBeUnique();
+        }
     }
 
     public function getCustomer():Customer
