@@ -33,7 +33,7 @@ Según esta especificación se va crear dos puntos de entrada:
 
 Tanto para el envió de datos como la obtención de datos se va a utilizar el formato JSON.
 
-*/products*
+* /products *
 
 * Sólo va a gestionar las peticiones POST. Cualquier otro tipo dara como resultado un código de error HTTP 404.
 * El email debe ser único. Si el email ya está registrado la API devolverá un código de error HTTP 409 con un mensaje.
@@ -93,13 +93,14 @@ Ejemplo de entrada de datos JSON:
 	}
 }
 
-*/products/order/{x}/shop/{y}*
+* /products/order/{x}/shop/{y} *
 
 * Si el pedido no existe se devuelve un código HTTP 404.
 * Si el pedido existe y no hay productos de esa tienda se devuelve un código HTTP 200 con un resultado de array vacio.
 * Si el pedido existe y hay products de la tienda se devuelve un código HTTP 200 con un JSON con el siguiente formato:
 
-{"products": [{producto}, {producto}]}
+Ejemplo de respuesta JSON:
+{"products":[{"order_id":35,"shop_id":1,"name":"Carrots","description":"Purple carrots bag.","amount":1,"price":"1.20"},{"order_id":35,"shop_id":1,"name":"Onion","description":"Onions from Cuenca.","amount":3,"price":"1.80"},{"order_id":35,"shop_id":1,"name":"Avocado","description":"Avocado from Brasil.","amount":4,"price":"4.50"},{"order_id":35,"shop_id":1,"name":"Banana","description":"Banana from Canaria.","amount":6,"price":"1.50"}]}
 
 
 
