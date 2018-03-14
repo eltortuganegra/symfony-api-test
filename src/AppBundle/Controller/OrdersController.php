@@ -20,18 +20,18 @@ class OrdersController extends  Controller
      */
     public function indexAction(Request $request)
     {
+        if (!$this->isPostRequest($request)) {
+            return ResponseFactory::get404();
+        }
+
         $entityManager = $this->getDoctrine()->getManager();
         $requestContent = $request->getContent();
         $createOrderProcess = new FinishOrderProcess($entityManager);
         $orderData = json_decode($requestContent, true);
         try {
             $createOrderProcess->execute($orderData);
-            $response = ['result' => "ok"];
 
             return ResponseFactory::get200();
-//            return new Response(
-//                json_encode($response)
-//            );
         } catch (EmailOfCustomerMustBeUnique $e) {
             $content = [
                 'message' => 'El email del cliente debe ser único.'
@@ -40,5 +40,10 @@ class OrdersController extends  Controller
 
             return $response;
         }
+    }
+
+    protected function isPostRequest(Request $request)
+    {
+        return $request->getMethod() === 'POST';
     }
 }

@@ -22,4 +22,12 @@ class ResponseFactory
 
         return $response;
     }
+
+    static public function get404()
+    {
+        $response = new Response();
+        $response->setStatusCode(\Symfony\Component\HttpFoundation\Response::HTTP_NOT_FOUND);
+
+        return $response;
+    }
 }
