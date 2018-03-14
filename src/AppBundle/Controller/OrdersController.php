@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-
 use AppBundle\Exceptions\EmailOfCustomerMustBeUniqueException;
 use AppBundle\Process\FinishOrderProcess;
 use AppBundle\Responses\ResponseFactory;
@@ -14,7 +13,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class OrdersController extends  Controller
 {
-
     /**
      * @Route("/orders")
      */
@@ -46,6 +44,4 @@ class OrdersController extends  Controller
     {
         return $request->getMethod() === 'POST';
     }
-
-
 }
