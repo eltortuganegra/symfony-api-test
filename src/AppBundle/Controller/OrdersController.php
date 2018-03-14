@@ -3,7 +3,7 @@
 namespace AppBundle\Controller;
 
 
-use AppBundle\Exceptions\EmailOfCustomerMustBeUnique;
+use AppBundle\Exceptions\EmailOfCustomerMustBeUniqueException;
 use AppBundle\Process\FinishOrderProcess;
 use AppBundle\Responses\ResponseFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -32,7 +32,7 @@ class OrdersController extends  Controller
             $createOrderProcess->execute($orderData);
 
             return ResponseFactory::get200();
-        } catch (EmailOfCustomerMustBeUnique $e) {
+        } catch (EmailOfCustomerMustBeUniqueException $e) {
             $content = [
                 'message' => 'El email del cliente debe ser único.'
             ];
