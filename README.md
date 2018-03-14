@@ -97,9 +97,10 @@ Ejemplo de entrada de datos JSON:
 
 * Si el pedido no existe se devuelve un código HTTP 404.
 * Si el pedido existe y no hay productos de esa tienda se devuelve un código HTTP 200 con un resultado de array vacio.
-* Si el pedido existe y hay products de la tienda se devuelve un código HTTP 200 con un JSON con el siguiente formato:
+* Si el pedido existe y hay products de la tienda se devuelve un código HTTP 200 con un JSON con el listado de productos para esa tienda.
 
 Ejemplo de respuesta JSON:
+
 {"products":[{"order_id":35,"shop_id":1,"name":"Carrots","description":"Purple carrots bag.","amount":1,"price":"1.20"},{"order_id":35,"shop_id":1,"name":"Onion","description":"Onions from Cuenca.","amount":3,"price":"1.80"},{"order_id":35,"shop_id":1,"name":"Avocado","description":"Avocado from Brasil.","amount":4,"price":"4.50"},{"order_id":35,"shop_id":1,"name":"Banana","description":"Banana from Canaria.","amount":6,"price":"1.50"}]}
 
 
