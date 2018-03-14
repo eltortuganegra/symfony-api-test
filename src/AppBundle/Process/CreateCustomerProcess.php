@@ -4,11 +4,9 @@ namespace AppBundle\Process;
 
 use AppBundle\Entity\Customer;
 use AppBundle\Factory\CustomerFactory;
-use AppBundle\Factory\CustomerFactoryImp;
 
 class CreateCustomerProcess
 {
-    private $customerFactory;
     private $entityManager;
     private $customer;
 
@@ -19,25 +17,13 @@ class CreateCustomerProcess
 
     public function execute($data)
     {
-        $this->loadCustomerFactory();
         $this->makeCustomer($data);
         $this->save();
     }
 
-    private function loadCustomerFactory()
-    {
-        $customerFactoryImp = new CustomerFactoryImp();
-        $this->setCustomerFactory($customerFactoryImp);
-    }
-
-    private function setCustomerFactory(CustomerFactory $customerFactory)
-    {
-        $this->customerFactory = $customerFactory;
-    }
-
     private function makeCustomer($data)
     {
-        $this->customer = $this->customerFactory->makeCustomer($data);
+        $this->customer = CustomerFactory::makeCustomer($data);
     }
 
     private function save()
