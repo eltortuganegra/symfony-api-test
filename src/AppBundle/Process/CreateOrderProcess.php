@@ -27,12 +27,12 @@ class CreateOrderProcess
         $this->save();
     }
 
-    protected function makeOrder($data)
+    private function makeOrder($data)
     {
         $this->order = OrderFactory::makeOrder($this->customer, $data);
     }
 
-    protected function save()
+    private function save()
     {
         $this->entityManager->persist($this->order);
         $this->entityManager->flush();

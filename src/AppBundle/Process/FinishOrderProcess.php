@@ -49,20 +49,6 @@ class FinishOrderProcess
         $this->createOrderProcess->setCustomer($this->customer);
         $data = $this->orderData['order'];
         $this->createOrderProcess->execute($data);
-
-//        $boughtAt = new \DateTime('2018-01-01 12:12:12');
-//        $deliverDate = new \DateTime('2018-01-02 12:12:12');
-//
-//        $order = new Order();
-//        $order->setBoughtBy($this->customer);
-//        $order->setAddress('asdf');
-//        $order->setBoughAt($boughtAt);
-//        $order->setDeliverDate($deliverDate);
-//        $order->setDeliverHours('13-15');
-//        $order->setPrice(10.5);
-//
-//        $this->entityManager->persist($order);
-//        $this->entityManager->flush();
     }
 
     private function loadCreateOrderProcess()
@@ -75,7 +61,4 @@ class FinishOrderProcess
     {
         $this->createOrderProcess = $createOrderProcess;
     }
-
-
-
 }
