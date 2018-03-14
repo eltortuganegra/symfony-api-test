@@ -1,3 +1,109 @@
+Ejercicio con Symfony 3.4
+========================
+
+Enunciado
+--------------
+
+Se tiene una plataforma de venta on line compuesta por una API REST y distintas aplicaciones clientes que hacen uso
+de esta API.
+
+Cuando un usuario finaliza un pedido desde una aplicación móvil esta lanza una petición con los siguientes datos:
+
+* Nombre y apellidos del cliente
+* Email (Único por cliente)
+* Teléfono
+* Dirección de entrega (solo puede existir una por pedido)
+* Fecha de compra
+* Fecha de entrega
+* Franja de hora seleccionada para la entrega
+* Importe total
+* Productos seleccionados con sus atributos (al menos 5 productos)
+* * Nombre
+* * Descripción
+* * Unidades
+* * Precio
+* * Tienda de venta
+
+Por otro lado los usuarios pueden ver, una vez finalizado un pedido, qué productos hay de una determinada tienda.
+
+Según esta especificación se va crear dos puntos de entrada:
+
+* POST /products: servicio donde las aplicaciones envían los datos para finalizar una compra.
+* GET /products/order/{x}/shop/{y}: servicio donde las aplicaciones obtienen la información del pedido (x) y los productos de una tienda (y).
+
+Tanto para el envió de datos como la obtención de datos se va a utilizar el formato JSON.
+
+*/products*
+
+* Sólo va a gestionar las peticiones POST. Cualquier otro tipo dara como resultado un código de error HTTP 404.
+* El email debe ser único. Si el email ya está registrado la API devolverá un código de error HTTP 409 con un mensaje.
+* Si la finalización del pedido se ha hecho con éxito se devuelve un código de error HTTP 200.
+
+Ejemplo de entrada de datos JSON:
+
+{
+	"customer": {
+		"name_and_surname": "Tony Stark",
+		"email": "tony@starkindustries.com",
+		"phone_number": "+9966666666"
+	},
+	"order": {
+		"address": "10880 Malibu Point, Florida",
+		"bought_at": "2018-01-01 12:00:01",
+		"deliver_date": "2018-01-02",
+		"deliver_hours": "11:00-13:15",
+		"price": "25.03",
+		"items": [
+			{
+				"name": "Carrots",
+				"description": "Purple carrots bag.",
+				"amount": "1",
+				"price": "1.20",
+				"shop_id": "1"
+			},
+			{
+				"name": "Onion",
+				"description": "Onions from Cuenca.",
+				"amount": "3",
+				"price": "1.80",
+				"shop_id": "1"
+			},
+			{
+				"name": "Avocado",
+				"description": "Avocado from Brasil.",
+				"amount": "4",
+				"price": "4.50",
+				"shop_id": "1"
+			},
+			{
+				"name": "Banana",
+				"description": "Banana from Canaria.",
+				"amount": "6",
+				"price": "1.50",
+				"shop_id": "1"
+			},
+			{
+				"name": "Orange",
+				"description": "Orange from Valencia.",
+				"amount": "1",
+				"price": "1.30",
+				"shop_id": "2"
+			}
+		]
+	}
+}
+
+*/products/order/{x}/shop/{y}*
+
+* Si el pedido no existe se devuelve un código HTTP 404.
+* Si el pedido existe y no hay productos de esa tienda se devuelve un código HTTP 200 con un resultado de array vacio.
+* Si el pedido existe y hay products de la tienda se devuelve un código HTTP 200 con un JSON con el siguiente formato:
+
+{"products": [{producto}, {producto}]}
+
+
+
+
 Symfony Standard Edition
 ========================
 
