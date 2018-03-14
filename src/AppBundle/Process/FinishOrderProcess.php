@@ -11,6 +11,7 @@ class FinishOrderProcess
     private $orderData;
     private $customer;
     private $createOrderProcess;
+    private $order;
 
     public function __construct($entityManager)
     {
@@ -22,6 +23,7 @@ class FinishOrderProcess
         $this->setOrderData($orderData);
         $this->createCustomer();
         $this->createOrder();
+        $this->createProducts($orderData);
     }
 
     function setOrderData($orderData)
@@ -49,6 +51,7 @@ class FinishOrderProcess
         $this->createOrderProcess->setCustomer($this->customer);
         $data = $this->orderData['order'];
         $this->createOrderProcess->execute($data);
+        $this->order = $this->createOrderProcess->getOrder();
     }
 
     private function loadCreateOrderProcess()
@@ -60,5 +63,21 @@ class FinishOrderProcess
     public function setCreateOrderProcess(CreateOrderProcess $createOrderProcess)
     {
         $this->createOrderProcess = $createOrderProcess;
+    }
+
+    protected function createProducts($orderData)
+    {
+        $createProductByOrderProcess = new CreateProductProcess($this->entityManager);
+        $createProductByOrderProcess->setOrder($this->order);
+
+        $items = $orderData['order']['items'];
+        foreach ($items as $item) {
+            $this->createProduct($createProductByOrderProcess, $item);
+        }
+    }
+
+    protected function createProduct($createProductByOrderProcess, $item)
+    {
+        $createProductByOrderProcess->execute($item);
     }
 }

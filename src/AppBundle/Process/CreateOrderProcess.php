@@ -3,6 +3,7 @@
 namespace AppBundle\Process;
 
 use AppBundle\Entity\Customer;
+use AppBundle\Entity\Order;
 use AppBundle\Factory\OrderFactory;
 
 class CreateOrderProcess
@@ -36,5 +37,10 @@ class CreateOrderProcess
     {
         $this->entityManager->persist($this->order);
         $this->entityManager->flush();
+    }
+
+    public function getOrder():Order
+    {
+        return $this->order;
     }
 }
