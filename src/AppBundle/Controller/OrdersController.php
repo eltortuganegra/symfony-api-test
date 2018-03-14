@@ -36,7 +36,7 @@ class OrdersController extends  Controller
             $content = [
                 'message' => 'El email del cliente debe ser único.'
             ];
-            $response = ResponseFactory::get400($content);
+            $response = ResponseFactory::get409($content);
 
             return $response;
         }

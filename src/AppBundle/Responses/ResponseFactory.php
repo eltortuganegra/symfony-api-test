@@ -14,7 +14,7 @@ class ResponseFactory
         return $response;
     }
 
-    static public function get400($data)
+    static public function get409($data)
     {
         $response = new Response();
         $response->setStatusCode(\Symfony\Component\HttpFoundation\Response::HTTP_CONFLICT);
